@@ -8,7 +8,7 @@ library(reshape2)
 # num_question_Est: how many questions you want to use in estimation
 # num_question: how many questions are asked for each subject
 # type_theta: type of scaling parameter used in simulation, specify either "Global", "Individual" or "Hier"
-# path: your full working directory path 
+# directory: your full working directory directory 
 # save_out: whether save the stan fit object as a rdata file
 # chains, iter, thin, adapt_delta, max_treedepth and stepsize: these are parameters which control
 #               how the samplers work. Please refer to Stan help for detailed description. Only 
@@ -19,7 +19,7 @@ Stan_Time_Estimation <- function(project_name,
                                  num_question_Est, 
                                  num_question, 
                                  type_theta, 
-                                 path,
+                                 directory,
                                  save_out = T,
                                  chains=3, 
                                  iter=1000, 
@@ -31,11 +31,11 @@ Stan_Time_Estimation <- function(project_name,
   # Make sure the type of delta used is correct
   stopifnot(type_theta %in% c('Global', 'Individual', 'Hier'))
     
-  gambles1 <- read.csv(paste0(path, '/', project_name, '_Time_options_chosen.csv')
+  gambles1 <- read.csv(paste0(directory, '/', project_name, '_Time_options_chosen.csv')
                          , header = F, col.names = c("ssamount","ssdelay"))
-  gambles2 <- read.csv(paste0(path, '/', project_name, '_Time_options_notchosen.csv')
+  gambles2 <- read.csv(paste0(directory, '/', project_name, '_Time_options_notchosen.csv')
                          , header = F, col.names = c("llamount","lldelay"))
-  serials <- read.csv(paste0(path, '/', project_name, '_Time_serials.csv'), header = F)
+  serials <- read.csv(paste0(directory, '/', project_name, '_Time_serials.csv'), header = F)
   
   subjectNumber <- nrow(serials)
   
@@ -94,7 +94,7 @@ Stan_Time_Estimation <- function(project_name,
   
   if (save_out){
     # Save out the Stan fit subject as a RData file in your working directory
-    filename_stan   <- paste0(path, "/Stan_Time_", project_name, "_Est", type_theta,
+    filename_stan   <- paste0(directory, "/Stan_Time_", project_name, "_Est", type_theta,
                                           num_question_Est, "questions.RData")
     save(hier_time, file = filename_stan)
   } else {
