@@ -2,12 +2,18 @@ Package: DEEPEst
 Title: Hierarchical Bayesian Estimation for DEEP with Stan
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Qi",
+    c(person(given = "Qi",
            family = "Zhao",
            role = c("aut", "cre"),
            email = "zhaoxiaomi277@outlook.com",
+           comment = c(ORCID = "YOUR-ORCID-ID")),
+      person(given = "Daniel",
+           family = "Wall",
+           role = c("aut"),
+           email = "itsdanwall@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Dynamic Experiments for Estimating Preferences (DEEP)
+      )      
+Description: This package provides Hierachical Bayesian functions for Dynamic Experiments for Estimating Preferences (DEEP). 
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
