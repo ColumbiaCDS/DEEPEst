@@ -1,6 +1,12 @@
-library(ggplot2)
-library(dplyr)
-library(reshape2)
+#' Save estimates from the object of class "stanfit" returned
+#'
+#' @export
+#' @param project_name The unique name for this DEEP survey.
+#' @param num_question_Est Number of questions used in estimation for each subject.
+#' @param type_theta Type of response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path The full working directory path where the DEEP survey output csv file is saved.
+
+
 
 ############## Main function to do Stan estimation ############
 ##### The function to save estimates from Stan fit object to csv files

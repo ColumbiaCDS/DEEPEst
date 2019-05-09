@@ -1,6 +1,6 @@
 #' The 'DEEPEst' package.
 #'
-#' @description A DESCRIPTION OF THE PACKAGE
+#' @description Hierarchical Bayesian Estimation for DEEP with Stan
 #'
 #' @docType package
 #' @name DEEPEst-package

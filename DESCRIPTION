@@ -1,6 +1,7 @@
 Package: DEEPEst
 Title: Hierarchical Bayesian Estimation for DEEP with Stan
 Version: 0.0.0.9000
+Date: 2019-05-09
 Authors@R: 
     c(person(given = "Qi",
            family = "Zhao",
@@ -12,8 +13,11 @@ Authors@R:
            role = c("aut"),
            email = "itsdanwall@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-      )      
-Description: This package provides Hierachical Bayesian functions for Dynamic Experiments for Estimating Preferences (DEEP). 
+      )
+Maintainer: CDS <cds@decisionsciences.columbia.edu>            
+Description: Dynamic Experiments for Estimating Preferences (DEEP) is a novel methodology to elicit individuals' risk and time preferences by dynamically optimizing the sequences of questions presented to each subject, while leveraging information about the distribution of the parameters across individuals (heterogeneity) and modeling response error explicitly. This package provides functions to execute hierarchical Bayesian estimation for DEEP with Stan.
+
+Execute hierachical Bayesian estimation for . 
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
