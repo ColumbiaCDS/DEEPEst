@@ -1,4 +1,4 @@
-[<img src="man/CDSLogo.png" width=100 alt="CDS Logo"/>](https://www8.gsb.columbia.edu/decisionsciences/)
+[<img src="images/CDSLogo.png" width=100 alt="CDS Logo"/>](https://www8.gsb.columbia.edu/decisionsciences/)
 
 # Dynamic Experiments for Estimating Preferences (DEEP)
 

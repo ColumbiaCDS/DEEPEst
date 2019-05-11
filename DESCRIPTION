@@ -6,18 +6,17 @@ Authors@R:
     c(person(given = "Qi",
            family = "Zhao",
            role = c("aut", "cre"),
-           email = "zhaoxiaomi277@outlook.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           email = "zhaoxiaomi277@outlook.com"),
       person(given = "Daniel",
            family = "Wall",
-           role = c("aut"),
-           email = "itsdanwall@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           role = c("ctb"),
+           email = "itsdanwall@gmail.com"),
+      person(given = "Center for Decision Sciences",
+           family = "Columbia Business School",
+           email = "cds@decisionsciences.columbia.edu"
+           role = c("cph"))     
       )
-Maintainer: CDS <cds@decisionsciences.columbia.edu>            
-Description: Dynamic Experiments for Estimating Preferences (DEEP) is a novel methodology to elicit individuals' risk and time preferences by dynamically optimizing the sequences of questions presented to each subject, while leveraging information about the distribution of the parameters across individuals (heterogeneity) and modeling response error explicitly. This package provides functions to execute hierarchical Bayesian estimation for DEEP with Stan.
-
-Execute hierachical Bayesian estimation for . 
+Description: Dynamic Experiments for Estimating Preferences (DEEP) is a novel methodology to elicit individuals' risk and time preferences by dynamically optimizing the sequences of questions presented to each subject, while leveraging information about the distribution of the parameters across individuals (heterogeneity) and modeling response error explicitly. This package provides functions to execute hierarchical Bayesian estimation for DEEP with Stan and posterior analysis on estimates of both time and risk preferences parameters. 
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
