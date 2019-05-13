@@ -1,3 +1,7 @@
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+library(gridExtra)
 ## The function to plot the distribution of preference parameter estimates
 Risk_dist_estimates <- function(project_name,
                                 num_question_Est,
@@ -53,7 +57,6 @@ Risk_dist_estimates <- function(project_name,
     labs(title = subtitle) +
     xlim(c(mean(lambdas) - 2*sd(lambdas), mean(lambdas) + 2*sd(lambdas)))
   
-  multiplot(dist_alphas, dist_sigmas, dist_lambdas,
-            cols=1)
+  grid.arrange(dist_alphas, dist_sigmas, dist_lambdas, cols=1)
   
 }

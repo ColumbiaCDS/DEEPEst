@@ -1,3 +1,4 @@
+library(dplyr)
 ############# Data Read, Clean and Prepare ###################
 # The function to make the data files from original survey data output for Stan estimation.
 # This function automatically drop those "unengaged" responses (noisy ones with only random choices).
@@ -20,7 +21,7 @@ Time_data_prepare <- function(project_name,
     # This argument controls how we regard responses as noisy responses completed just randomly by subjects.
     #During data cleaning, we will first drop responses which are finished within (each_seconds * num_questions) seconds in total.
     used_time <- original %>% group_by(participant) %>% summarise(sum = sum(timesincepresentation))
-    original <- original %>% filter(participant %in% result$participant[result$sum > num_question * each_seconds])
+    original <- original %>% filter(participant %in% used_time$participant[used_time$sum > num_question * each_seconds])
     rownames(original) <- seq(nrow(original))
   }
   

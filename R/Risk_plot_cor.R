@@ -24,7 +24,7 @@ Risk_plot_cor <- function(project_name,
   p2 <- matrix(unlist(stan[parameter2]), nrow = dim(stan$alpha)[1], byrow = F)
   ind_cor <- diag(cor(p1, p2))
   
-  ggplot() +
+  ggplot2::ggplot() +
     geom_density(mapping = aes(x = ind_cor), fill = 'blue', alpha = 0.2) +
     xlab('Correlation Coefficient') +
     theme(legend.position=c(0.8,0.8)) +

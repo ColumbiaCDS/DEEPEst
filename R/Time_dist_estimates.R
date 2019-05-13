@@ -1,6 +1,7 @@
 library(ggplot2)
 library(dplyr)
 library(reshape2)
+library(gridExtra)
 
 ## The function to plot the distribution of preference parameter estimates
 Time_dist_estimates <- function(project_name, 
@@ -57,6 +58,5 @@ Time_dist_estimates <- function(project_name,
     labs(title = subtitle) +
     xlim(c(mean(deltas) - 2*sd(deltas), mean(deltas) + 2*sd(deltas)))
   
-  multiplot(dist_betas, dist_rs, dist_deltas,
-            cols=1)
+  grid.arrange(dist_betas, dist_rs, dist_deltas, ncol = 1)
 }
