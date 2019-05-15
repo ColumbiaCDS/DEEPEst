@@ -1,15 +1,21 @@
-#' Save estimates from the object of class "stanfit" returned
+#' Save Time Preferences Estimates to csv Files
+#' @description Save posterior point estimates for time preferences from stanfit object to csv files.
+#' @param project_name The name of this study. 
+#' @param num_question_Est How many questions you want to use in estimation.
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path Full working path.
 #'
+#' @return Two csv files will be saved under directory indicated by \code{path}:
+#' \itemize{
+#'   \item "StanEstimates_Time_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\beta} (present-bias parameter), \eqn{r} (daily discount rate) and yearly discount factor \eqn{\delta} respectively as in three columns. The number of rows is the number of subjects in the survey. 
+#'   \item "StanEstimates_Time_theta_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains estimates of either global or individual scaling response error parameter \eqn{\theta}.
+#' }
+#' 
 #' @export
-#' @param project_name The unique name for this DEEP survey.
-#' @param num_question_Est Number of questions used in estimation for each subject.
-#' @param type_theta Type of response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
-#' @param path The full working directory path where the DEEP survey output csv file is saved.
+#' @importFrom rstan extract
+#' @examples
+#' Time_save_stantocsv(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = path)
 
-
-
-############## Main function to do Stan estimation ############
-##### The function to save estimates from Stan fit object to csv files
 Time_save_stantocsv <- function(project_name,
                            num_question_Est, 
                            type_theta, 

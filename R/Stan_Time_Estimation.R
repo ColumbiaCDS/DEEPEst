@@ -2,24 +2,41 @@ library(ggplot2)
 library(dplyr)
 library(reshape2)
 
-############## Main function to do Stan estimation ############
-# project_name: the default is "NULL". Only change this if you are doing Stan estimation
-#           on your survey PHP data. In that case, change it to the name of your study.
-# num_question_Est: how many questions you want to use in estimation
-# num_question: how many questions are asked for each subject
-# type_theta: type of scaling parameter used in simulation, specify either "Global", "Individual" or "Hier"
-# directory: your full working directory directory 
-# save_out: whether save the stan fit object as a rdata file
-# chains, iter, thin, adapt_delta, max_treedepth and stepsize: these are parameters which control
-#               how the samplers work. Please refer to Stan help for detailed description. Only 
-#               change them if you find the convergence is awful in diagnosis.
-#               For Time estimation, usually no much changes needed.
+#' Stan Estimation Function for DEEP Time
+#' @description The main function to do estimation on DEEP Time data. With 
+#' @param project_name The name of this study. 
+#' @param num_question_Est How many questions you want to use in estimation.
+#' @param num_question How many questions are asked for each subject.
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path Full working path.
+#' @param save_out Whether save the stanfit object as a rdata file. The default is "TRUE".
+#' @param chains A positive integer specifying the number of Markov chains. The default is 3.
+#' @param iter A positive integer specifying the number of iterations for each chain (including warmup). The default is 1000.
+#' @param thin A positive integer specifying the period for saving samples. The default is 3. For details, refer to help page for function \code{\link[rstan]{stan}}.
+#' @param adapt_delta A double value between 0 and 1 controlling the accept probability in sampling. The default is 0.9. For details, refer to help page for function \code{\link[rstan]{stan}}.
+#' @param max_treedepth A positive integer specifying how deep in tree exploration. The default is 12. For details, refer to help page for function \code{\link[rstan]{stan}}.
+#' @param stepsize A double and positive value controlling sampler's behavior. The default is 1. For details, refer to help page for function \code{\link[rstan]{stan}}.
+#' 
+#' @return Return a large stanfit object called "hier_time" if \code{save_out=FALSE}. Otherwise, return nothing but save the stanfit object into a local RData file named 
+#' "Stan_Time_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.RData" under directory \code{path}.
+#' @export
+#'
+#' @importFrom rstan stan
+#' @examples
+#' Stan_Time_Estimation(project_name = 'Test', num_question_Est = 12, num_question = 12, 
+#' type_theta = 'Hier', path = '/Users/ap/Desktop')
+#' @references 
+#' Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for 
+#' estimating preferences: An adaptive method of eliciting time and risk parameters. 
+#' Management Science, 59(3), 613-640.
+#' \url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.1120.1570}
+#' 
 
 Stan_Time_Estimation <- function(project_name, 
                                  num_question_Est, 
                                  num_question, 
                                  type_theta, 
-                                 directory,
+                                 path,
                                  save_out = T,
                                  chains=3, 
                                  iter=1000, 
@@ -31,11 +48,11 @@ Stan_Time_Estimation <- function(project_name,
   # Make sure the type of delta used is correct
   stopifnot(type_theta %in% c('Global', 'Individual', 'Hier'))
     
-  gambles1 <- read.csv(paste0(directory, '/', project_name, '_Time_options_chosen.csv')
+  gambles1 <- read.csv(paste0(path, '/', project_name, '_Time_options_chosen.csv')
                          , header = F, col.names = c("ssamount","ssdelay"))
-  gambles2 <- read.csv(paste0(directory, '/', project_name, '_Time_options_notchosen.csv')
+  gambles2 <- read.csv(paste0(path, '/', project_name, '_Time_options_notchosen.csv')
                          , header = F, col.names = c("llamount","lldelay"))
-  serials <- read.csv(paste0(directory, '/', project_name, '_Time_serials.csv'), header = F)
+  serials <- read.csv(paste0(path, '/', project_name, '_Time_serials.csv'), header = F)
   
   subjectNumber <- nrow(serials)
   
@@ -93,8 +110,8 @@ Stan_Time_Estimation <- function(project_name,
     }
   
   if (save_out){
-    # Save out the Stan fit subject as a RData file in your working directory
-    filename_stan   <- paste0(directory, "/Stan_Time_", project_name, "_Est", type_theta,
+    # Save out the Stan fit subject as a RData file in your working path
+    filename_stan   <- paste0(path, "/Stan_Time_", project_name, "_Est", type_theta,
                                           num_question_Est, "questions.RData")
     save(hier_time, file = filename_stan)
   } else {
