@@ -4,7 +4,7 @@
 # It also drops all responses which contain only one-side options (only left or right chose options).
 
 #' Survey Data Read, Clean and Denoise
-#' @description 
+#' @description Read Survey
 #' @param project_name The name of this study.
 #' @param path Full path for working directory.
 #' @param num_question How many questions are asked for each subject in this suvery.
