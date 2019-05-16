@@ -17,7 +17,7 @@
 #' "Stan_Time_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.RData" under directory \code{path}.
 #' @export
 #'
-#' @importFrom rstan stan
+#' @importFrom rstan sampling
 #' @examples
 #' Stan_Time_Estimation(project_name = 'Test', num_question_Est = 12, num_question = 12, 
 #' type_theta = 'Hier', path = '/Users/ap/Desktop')
@@ -72,7 +72,7 @@ Stan_Time_Estimation <- function(project_name,
   
   # run stan model with indiviual or global or hierarchical scaling response noise parameter
   if (type_theta == 'Global') {
-    hier_time <- stan(stanmodels$Stan_Time_Global,
+    hier_time <- sampling(stanmodels$Stan_Time_Global,
                  data = moddat,
                  chains = chains, 
                  iter = iter,
@@ -83,7 +83,7 @@ Stan_Time_Estimation <- function(project_name,
                                 stepsize = stepsize))
     } else {
       if (type_theta == 'Individual'){
-        hier_time <- stan(stanmodels$Stan_Time_Individual,
+        hier_time <- sampling(stanmodels$Stan_Time_Individual,
                      data = moddat,
                      chains = chains, 
                      iter = iter,
@@ -93,7 +93,7 @@ Stan_Time_Estimation <- function(project_name,
                                     max_treedepth = max_treedepth,
                                     stepsize = stepsize))
       } else {
-        hier_time <- stan(stanmodels$Stan_Time_Hier,
+        hier_time <- sampling(stanmodels$Stan_Time_Hier,
                      data = moddat,
                      chains = chains, 
                      iter = iter,
