@@ -1,9 +1,11 @@
 #' Save Time Preferences Estimates to csv Files
-#' @description Save posterior point estimates for time preferences from stanfit object to csv files.
+#' @description Save posterior point estimates for time preferences from stanfit object to local csv files. 
+#' Only run this function when stanfit object for study \code{project_name} is saved under directory \code{path} after estimation.
+#' 
 #' @param project_name The name of this study. 
 #' @param num_question_Est How many questions you want to use in estimation.
 #' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
-#' @param path Full working path.
+#' @param path Full path for working directory.
 #'
 #' @return Two csv files will be saved under directory indicated by \code{path}:
 #' \itemize{
@@ -15,7 +17,12 @@
 #' @importFrom rstan extract
 #' @examples
 #' Time_save_stantocsv(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = path)
-
+#' @references 
+#' Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for 
+#' estimating preferences: An adaptive method of eliciting time and risk parameters. 
+#' Management Science, 59(3), 613-640.
+#' \url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.1120.1570}
+#' 
 Time_save_stantocsv <- function(project_name,
                            num_question_Est, 
                            type_theta, 

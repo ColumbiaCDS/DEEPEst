@@ -1,15 +1,28 @@
-library(ggplot2)
-library(dplyr)
-library(reshape2)
-
-### Save the stan estimated individual parameters out as csv file. With the first column being alpha, second sigma and third lambda
-## path sould be set to the working directory where you save your stan result (.rdata file) and the document "RISKSIM0"
-## By setting argument "isGerman" to be true, it will save the estimated parameters of DEEP German Risk
-## "isGlobal=T" means stan set parameter delta globally for each subject
-## SimID is the simulation ID, denoting which simulated dataset we are estimating here with stan
-## questionEst: number of questions each subjects used here in estimation
-## subfolder: the name of the document which saves all the outputs of running simulation, mine is 'RISKSIM0'
-## path: working directory, where you save all the files and the document which contains all simulated data 
+#' Save Risk Preferences Estimates to csv Files
+#' @description Save posterior point estimates for risk preferences from stanfit object to local csv files. 
+#' Only run this function when stanfit object for study \code{project_name} is saved under directory \code{path} after estimation.
+#' 
+#' @param project_name The name of this study. 
+#' @param num_question_Est How many questions you want to use in estimation.
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path Full path for working directory.
+#'
+#' @return Two csv files will be saved under directory indicated by \code{path}:
+#' \itemize{
+#'   \item "StanEstimates_Risk_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\alpha} (distortion of probability parameter), \eqn{\sigma} (curvature of value function) and \eqn{\lamdba} (loss aversion parameter) respectively as in three columns. The number of rows is the number of subjects in the survey. 
+#'   \item "StanEstimates_Risk_theta_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains estimates of either global or individual scaling response error parameter \eqn{\theta}.
+#' }
+#' 
+#' @export
+#' @importFrom rstan extract
+#' @examples
+#' Risk_save_stantocsv(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = path)
+#' @references 
+#' Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for 
+#' estimating preferences: An adaptive method of eliciting time and risk parameters. 
+#' Management Science, 59(3), 613-640.
+#' \url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.1120.1570}
+#' 
 Risk_save_stantocsv <- function(project_name,
                            num_question_Est,
                            type_theta, 

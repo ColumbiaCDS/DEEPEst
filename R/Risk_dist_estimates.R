@@ -1,8 +1,20 @@
-library(ggplot2)
-library(dplyr)
-library(reshape2)
-library(gridExtra)
-## The function to plot the distribution of preference parameter estimates
+#' Plot the Distribution of Estimates for Risk Preference Parameters.
+#' @description Plot the distributions of all parameter estimates across all subjects.
+#' Only run this function when stanfit object for study \code{project_name} is saved under directory \code{path} after estimation.
+#' @param project_name The name of this study.
+#' @param num_question_Est How many questions used in the estimation.
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path Full path for working directory.
+#' 
+#' @import ggplot2
+#' @importFrom gridExtra grid.arrange
+#' @importFrom rstan extract
+#' 
+#' @return Return the distribution plot for all parameter estimates for all subjects. 
+#' @export
+#'
+#' @examples
+#' Risk_dist_estimates(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = '/Users/ap/Desktop')
 Risk_dist_estimates <- function(project_name,
                                 num_question_Est,
                                 type_theta,

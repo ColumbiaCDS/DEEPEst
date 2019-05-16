@@ -1,4 +1,21 @@
-# The function to get the correlation coefficient between parameter estimates across all subjects
+#' Plot Correlation between Estimates of Risk Preferences
+#' @description For each subject, the function firstly computes the correlation coefficient between posterior sampling drawers of two parameters set by \code{parameter1} and \code{parameter2}. Then it draws the distribution of all correlation coefficients across all subjects. 
+#' Only run this function when stanfit object for study \code{project_name} is saved under directory \code{path} after estimation.
+#' @param project_name The name of this study. 
+#' @param num_question_Est How many questions you want to use in estimation.
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param path Full path for working directory.
+#' @param parameter1 First parameter. Specify either "alpha", "sigma" or "lambda".
+#' @param parameter2 Second parameter. Specify another parameter in "alpha", "sigma" or "lambda".
+#' 
+#' @import ggplot2
+#' @importFrom rstan extract
+#' @return  Return the distribution plot for all correlation coefficients. 
+#' @export
+#'
+#' @examples
+#' Risk_plot_cor(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = '/Users/ap/Desktop', 
+#' parameter1 = 'alpha', parameter2 = 'sigma')
 Risk_plot_cor <- function(project_name, 
                           num_question_Est,
                           type_theta, 

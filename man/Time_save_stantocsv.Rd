@@ -13,7 +13,7 @@ Time_save_stantocsv(project_name, num_question_Est, type_theta, path)
 
 \item{type_theta}{Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".}
 
-\item{path}{Full working path.}
+\item{path}{Full path for working directory.}
 }
 \value{
 Two csv files will be saved under directory indicated by \code{path}:
@@ -23,8 +23,15 @@ Two csv files will be saved under directory indicated by \code{path}:
 }
 }
 \description{
-Save posterior point estimates for time preferences from stanfit object to csv files.
+Save posterior point estimates for time preferences from stanfit object to local csv files. 
+Only run this function when stanfit object for study \code{project_name} is saved under directory \code{path} after estimation.
 }
 \examples{
 Time_save_stantocsv(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = path)
+}
+\references{
+Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for 
+estimating preferences: An adaptive method of eliciting time and risk parameters. 
+Management Science, 59(3), 613-640.
+\url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.1120.1570}
 }

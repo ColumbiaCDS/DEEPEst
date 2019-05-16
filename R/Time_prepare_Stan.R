@@ -1,5 +1,24 @@
-library(dplyr)
-
+#' Prepare Data for Stan Time Estimation
+#' @description Create an R list object containing all necessary data to run estimation for DEEP Time.
+#' Called by function \code{\link{Stan_Time_Estimation}}.
+#' @param all_Stan_data Data needed to be processed.
+#' @param num_question_Est How many questions used in the estimation.
+#' @param subjectNumber Number of subjects in this survey.
+#'
+#' @import dplyr
+#' @importFrom reshape2 acast
+#' 
+#' @return Several objects will be returned into global enviornment:
+#' \itemize{
+#'   \item ss_amnt, 
+#'   \item 
+#'   \item moddat, a list object containing all data needed in estimation model.
+#' }
+#' 
+#' @export
+#'
+#' @examples
+#' Time_prepare_Stan(all_Stan_data = all_Stan_data, num_question_Est = 12, subjectNumber = 200)
 Time_prepare_Stan <- function(all_Stan_data, 
                         num_question_Est, 
                         subjectNumber){

@@ -1,4 +1,15 @@
-# use the output as the input of RStan
+#' Index and Arrange Time Questions
+#' @description Index and arrange questions so that smaller-sooner and larger-later options would be arranged as expected. 
+#'
+#' @param stan_data Data needed to be processed.
+#' @param subjectNumber Number of subjects in this survey.
+#' @param num_question How many questions are asked for each subject in this survey.
+#'
+#' @return Return the indexed and arranged data.
+#' @export
+#'
+#' @examples
+#' Time_Index_Questions(stan_data = stan_data, subjectNumber = 200, num_question = 20)
 Time_index_Questions <- function(stan_data, 
                          subjectNumber,
                          num_question)

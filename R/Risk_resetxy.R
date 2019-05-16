@@ -1,5 +1,15 @@
-# Prepare data and make sure the values of x and y fall into the two situations 
-# clarified in the paper, that is either 1: x>y>0 or x<y<0, or 2: x < 0 < y
+# 
+# clarified in the paper, 
+#' Title
+#' @description Prepare data and make sure the values of x and y fall into the two situations of CPT model indicated in original paper: either \eqn{x>y>0|x<y<0}, or \eqn{x < 0 < y}.
+#' Called by function \code{\link{Stan_Risk_Estimation}}.
+#' @param g1g2 One row with contexts for two options in one Risk question. 
+#'
+#' @return Arranged data.
+#' @export
+#'
+#' @examples
+#' Risk_resetxy(g1g2)
 Risk_resetxy <- function(g1g2){
   g1 <- g1g2[1:4]
   g2 <- g1g2[5:8]

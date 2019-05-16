@@ -1,4 +1,25 @@
-## The function for formatting the input data to be compatible in stan 
+#' Prepare Data for Stan Risk Estimation
+#' @description Create an R list object containing all necessary data to run estimation for DEEP Risk.
+#' Called by function \code{\link{Stan_Risk_Estimation}}.
+#' @param all_Stan_data Data needed to be processed.
+#' @param num_question_Est How many questions used in the estimation.
+#' @param subjectNumber Number of subjects in this survey.
+#'
+#' @import dplyr
+#' @importFrom reshape2 acast
+#' 
+#' @return Several objects will be returned into global enviornment:
+#' \itemize{
+#'   \item ss_amnt, 
+#'   \item 
+#'   \item moddat, a list object containing all data needed in estimation model.
+#' }
+#' 
+#' @export
+#'
+#' @examples
+#' Risk_prepare_Stan(all_Stan_data = all_Stan_data, num_question_Est = 12, subjectNumber = 200)
+
 Risk_prepare_Stan <- function(all_Stan_data, num_question_Est, subjectNumber)
 {
   all_Stan_data <- all_Stan_data %>% filter(QuestionNum <= num_question_Est)

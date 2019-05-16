@@ -1,14 +1,10 @@
-library(ggplot2)
-library(dplyr)
-library(reshape2)
-
 #' Stan Estimation Function for DEEP Time
-#' @description The main function to do estimation on DEEP Time data. With 
+#' @description The main function to do estimation on DEEP Time data. This function will automatically call stan models.
 #' @param project_name The name of this study. 
 #' @param num_question_Est How many questions you want to use in estimation.
 #' @param num_question How many questions are asked for each subject.
 #' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
-#' @param path Full working path.
+#' @param path Full path for working directory.
 #' @param save_out Whether save the stanfit object as a rdata file. The default is "TRUE".
 #' @param chains A positive integer specifying the number of Markov chains. The default is 3.
 #' @param iter A positive integer specifying the number of iterations for each chain (including warmup). The default is 1000.
@@ -74,7 +70,7 @@ Stan_Time_Estimation <- function(project_name,
 
   initial_chains <- list(chain, chain, chain)
   
-  # run stan model with indiviual or global or hierarchical scaling parameter
+  # run stan model with indiviual or global or hierarchical scaling response noise parameter
   if (type_theta == 'Global') {
     hier_time <- stan(stanmodels$Stan_Time_Global,
                  data = moddat,
