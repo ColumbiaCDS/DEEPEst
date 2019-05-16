@@ -69,6 +69,6 @@ Risk_dist_estimates <- function(project_name,
     labs(title = subtitle) +
     xlim(c(mean(lambdas) - 2*sd(lambdas), mean(lambdas) + 2*sd(lambdas)))
   
-  grid.arrange(dist_alphas, dist_sigmas, dist_lambdas, cols=1)
+  grid.arrange(dist_alphas, dist_sigmas, dist_lambdas, ncol = 1)
   
 }
