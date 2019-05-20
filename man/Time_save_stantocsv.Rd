@@ -18,7 +18,7 @@ Time_save_stantocsv(project_name, num_question_Est, type_theta, path)
 \value{
 Two csv files will be saved under directory indicated by \code{path}:
 \itemize{
-  \item "StanEstimates_Time_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\beta} (present-bias parameter), \eqn{r} (daily discount rate) and yearly discount factor \eqn{\delta} respectively as in three columns. The number of rows is the number of subjects in the survey. 
+  \item "StanEstimates_Time_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\beta} (present-bias parameter), \eqn{r} (daily discount rate) and \eqn{\delta} (yearly discount factor) respectively as in three columns. The number of rows is the number of subjects in the survey. 
   \item "StanEstimates_Time_theta_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains estimates of either global or individual scaling response error parameter \eqn{\theta}.
 }
 }
