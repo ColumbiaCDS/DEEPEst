@@ -2,20 +2,26 @@
 % Please edit documentation in R/Risk_resetxy.R
 \name{Risk_resetxy}
 \alias{Risk_resetxy}
-\title{Title}
+\title{Arrange Risk Questions}
 \usage{
 Risk_resetxy(g1g2)
 }
 \arguments{
-\item{g1g2}{One row with contexts for two options in one Risk question.}
+\item{g1g2}{One row with contents for two options in one Risk question.}
 }
 \value{
 Arranged data.
 }
 \description{
-Prepare data and make sure the values of x and y fall into the two situations of CPT model indicated in original paper: either \eqn{x>y>0|x<y<0}, or \eqn{x < 0 < y}.
+Prepare data and make sure the values of rewards \code{x} and \code{y} fall into the two situations of CPT model indicated in original paper: either \eqn{x>y>0|x<y<0}, or \eqn{x<0<y}.
 Called by function \code{\link{Stan_Risk_Estimation}}.
 }
 \examples{
 Risk_resetxy(g1g2)
+}
+\references{
+Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for 
+estimating preferences: An adaptive method of eliciting time and risk parameters. 
+Management Science, 59(3), 613-640.
+\url{https://pubsonline.informs.org/doi/abs/10.1287/mnsc.1120.1570}
 }

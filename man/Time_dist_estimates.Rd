@@ -16,7 +16,7 @@ Time_dist_estimates(project_name, num_question_Est, type_theta, path)
 \item{path}{Full path for working directory.}
 }
 \value{
-Return the distribution plot for all parameter estimates for all subjects.
+Return the distribution plot for all time parameter estimates for all subjects.
 }
 \description{
 Plot the distributions of all parameter estimates across all subjects.

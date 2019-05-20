@@ -29,7 +29,7 @@ Three csv files will be saved under directory indicated by \code{path}:
 }
 }
 \description{
-Survey Data Read, Clean and Denoise
+Read Survey
 }
 \examples{
 Time_data_prepare(project_name = 'test', path = '/Users/ap/Desktop', num_question = 12)

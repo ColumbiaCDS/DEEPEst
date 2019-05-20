@@ -10,15 +10,16 @@
 #' 
 #' @return Several objects will be returned into global enviornment:
 #' \itemize{
-#'   \item x1, 
-#'   \item p1,
-#'   \item y1, 
-#'   \item q1,
-#'   \item x2, 
-#'   \item p2,
-#'   \item y2, 
-#'   \item q2,
-#'   \item moddat, a list object contains all data needed in estimation model.
+#'   \item x1: a dataframe contains amounts of first rewards in the left options. 
+#'   \item p1: a dataframe contains the probabilities receiving \code{x1}.
+#'   \item y1: a dataframe contains amounts of second rewards in the left options.
+#'   \item q1: a dataframe contains the probabilities receiving \code{y1}.
+#'   \item x2: a dataframe contains amounts of first rewards in the right options.
+#'   \item p2: a dataframe contains the probabilities receiving \code{x2}.
+#'   \item y2: a dataframe contains amounts of second rewards in the right options.
+#'   \item q2: a dataframe contains the probabilities receiving \code{y2}.
+#'   \item choices: a dataframe contains all choices made by subjects with "0" means left option is chosen and "1" means right option is chosen.
+#'   \item moddat: a list object contains all these data needed in estimation model.
 #' }
 #' 
 #' @export

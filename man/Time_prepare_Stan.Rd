@@ -9,20 +9,23 @@ Time_prepare_Stan(all_Stan_data, num_question_Est, subjectNumber)
 \arguments{
 \item{all_Stan_data}{Data needed to be processed.}
 
-\item{num_question_Est}{How many questions used in the estimation.}
+\item{num_question_Est}{How many questions are going to be used in this estimation.}
 
 \item{subjectNumber}{Number of subjects in this survey.}
 }
 \value{
 Several objects will be returned into global enviornment:
 \itemize{
-  \item ss_amnt, 
-  \item 
-  \item moddat, a list object containing all data needed in estimation model.
+  \item ss_amnt: a dataframe contains amounts of rewards in all smaller-sooner options.
+  \item ll_amnt: a dataframe contains amounts of rewards in all larger-later options.
+  \item ss_delay: a dataframe contains delayed days of rewards in all smaller-sooner options.
+  \item ll_delay: a dataframe contains delayed days of rewards in all larger-later options.
+  \item choices: a dataframe contains all choices made by subjects with "0" means smaller-sooner option is chosen and "1" means larger-later option is chosen.
+  \item moddat: a list object contains all these data needed in estimation model.
 }
 }
 \description{
-Create an R list object containing all necessary data to run estimation for DEEP Time.
+After reading, processing and denoising necessary data. This function will create an R list object containing all data to run estimation for DEEP Time.
 Called by function \code{\link{Stan_Time_Estimation}}.
 }
 \examples{

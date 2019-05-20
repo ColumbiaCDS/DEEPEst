@@ -2,7 +2,7 @@
 % Please edit documentation in R/Time_plot_cor.R
 \name{Time_plot_cor}
 \alias{Time_plot_cor}
-\title{Plot Correlation between Estimates of Time Preferences}
+\title{Plot Correlation between Estimates for Time Preferences}
 \usage{
 Time_plot_cor(project_name, num_question_Est, type_theta, path, parameter1,
   parameter2)
@@ -10,9 +10,9 @@ Time_plot_cor(project_name, num_question_Est, type_theta, path, parameter1,
 \arguments{
 \item{project_name}{The name of this study.}
 
-\item{num_question_Est}{How many questions used in the estimation.}
+\item{num_question_Est}{How many questions used in this estimation.}
 
-\item{type_theta}{Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".}
+\item{type_theta}{Type of scaling response noise parameter used in this estimation, specify either "Global", "Individual" or "Hier".}
 
 \item{path}{Full path for working directory.}
 
@@ -21,7 +21,7 @@ Time_plot_cor(project_name, num_question_Est, type_theta, path, parameter1,
 \item{parameter2}{Second parameter. Specify another parameter in "beta", "r" or "delta".}
 }
 \value{
-Return the distribution plot for all correlation coefficients.
+Return the distribution plot for all individual level correlation coefficients between two parameters specified.
 }
 \description{
 For each subject, the function firstly computes the correlation coefficient between posterior sampling drawers of two parameters set by \code{parameter1} and \code{parameter2}. Then it draws the distribution of all correlation coefficients across all subjects. 
