@@ -6,7 +6,12 @@
 \alias{DEEPEst}
 \title{The 'DEEPEst' package.}
 \description{
-Hierarchical Bayesian Estimation for DEEP with Stan
+Dynamic Experiments for Estimating Preferences (DEEP) is a novel methodology 
+to elicit individuals' risk and time preferences by dynamically optimizing the sequences of 
+questions presented to each subject, while leveraging information about the distribution of 
+the parameters across individuals (heterogeneity) and modeling response error explicitly. 
+This package provides functions to execute hierarchical Bayesian estimation for DEEP with 'Stan' <https://mc-stan.org> 
+and posterior analysis on estimates of both time and risk preferences parameters.
 }
 \references{
 Toubia, O., Johnson, E., Evgeniou, T., & Delquié, P. (2013). Dynamic experiments for estimating preferences: An adaptive method of eliciting time and risk parameters. 

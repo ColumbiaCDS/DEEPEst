@@ -1,23 +1,20 @@
-# The function to make the data files from original survey data output for Stan estimation.
-# This function automatically drop those "unengaged" responses (noisy ones with only random choices).
-# It drops all responses which are completed within each_seconds * num_questions seconds in total.
-# It also drops all responses which contain only one-side options (only left or right chose options).
+#' Read, Clean and Denoise Time Survey Data
+#' @description Read and denoise the original suvery output data. Only complete rows would be reserved. In addition, this function automatically drops those "unengaged" responses (noisy ones with only random choices, not involving utility consideration).
+#' Once you obtain the original output csv file from DEEP survey under directory \code{path}, rename it to be "DEEP_\{\code{model}\}_surveydata_\{\code{project_name}\}.csv", where "\code{model}" is either "Time" or "Risk".
 
-#' Survey Data Read, Clean and Denoise
-#' @description Read Survey
 #' @param project_name The name of this study.
 #' @param path Full path for working directory.
 #' @param num_question How many questions are asked for each subject in this suvery.
-#' @param clean_time Logical value. Default is TRUE means you want to denoise the original data by dropping those 
-#' @param clean_side 
-#' @param each_seconds 
+#' @param each_seconds How many seconds spent on each question on average so that the observation would be considered as a reasonable response.
+#' @param clean_time Logical value. Default is \code{TRUE} means you want to denoise the original data by dropping all responses which are completed within \code{num_question} times \code{each_seconds} seconds.
+#' @param clean_side Logical value. Default is \code{TRUE} means you want to denoise the original data by dropping all responses which only contain one-side options, namely, only left or right options chosen.
 #'
 #' @import dplyr
 #' 
-#' @return Three csv files will be saved under directory indicated by \code{path}:
+#' @return Three csv files will be saved under directory indicated by \code{path} and used in estimation function \code{\link{Stan_Time_Estimation}}:
 #' \itemize{
-#'   \item "\{\code{project_name}\}_Time_options_chosen.csv" contains all estimates of individual \eqn{\beta} (present-bias parameter), \eqn{r} (daily discount rate) and yearly discount factor \eqn{\delta} respectively as in three columns. The number of rows is the number of subjects in the survey. 
-#'   \item "\{\code{project_name}\}_Time_options_notchosen.csv" contains estimates of either global or individual scaling response error parameter \eqn{\theta}.
+#'   \item "\{\code{project_name}\}_Time_options_chosen.csv" contains amounts of rewards (first column) and delayed days (second column) of all chosen options. The number of rows is \code{num_question} times \code{num_subjects}, where \code{num_subjects} is the number of subjects in this survey after denoising.
+#'   \item "\{\code{project_name}\}_Time_options_notchosen.csv" is same as the above one except this contains data of unchosen options among all questions.
 #'   \item "\{\code{project_name}\}_Time_serials.csv" contains serial number for each subject as identification.
 #' }
 #' @export

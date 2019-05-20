@@ -17,7 +17,8 @@ Time_index_Questions(stan_data, subjectNumber, num_question)
 Return the indexed and arranged data.
 }
 \description{
-Index and arrange questions so that smaller-sooner and larger-later options would be arranged as expected.
+Index and arrange questions so that smaller-sooner and larger-later options would be arranged as expected. 
+Called by function \code{\link{Stan_Time_Estimation}}.
 }
 \examples{
 Time_Index_Questions(stan_data = stan_data, subjectNumber = 200, num_question = 20)

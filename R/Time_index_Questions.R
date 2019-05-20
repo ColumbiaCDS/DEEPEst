@@ -1,6 +1,6 @@
 #' Index and Arrange Time Questions
 #' @description Index and arrange questions so that smaller-sooner and larger-later options would be arranged as expected. 
-#'
+#' Called by function \code{\link{Stan_Time_Estimation}}.
 #' @param stan_data Data needed to be processed.
 #' @param subjectNumber Number of subjects in this survey.
 #' @param num_question How many questions are asked for each subject in this survey.

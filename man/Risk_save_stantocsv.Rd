@@ -18,7 +18,7 @@ Risk_save_stantocsv(project_name, num_question_Est, type_theta, path)
 \value{
 Two csv files will be saved under directory indicated by \code{path}:
 \itemize{
-  \item "StanEstimates_Risk_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\alpha} (distortion of probability parameter), \eqn{\sigma} (curvature of value function) and \eqn{\lamdba} (loss aversion parameter) respectively as in three columns. The number of rows is the number of subjects in the survey. 
+  \item "StanEstimates_Risk_parameters_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains all estimates of individual \eqn{\alpha} (distortion of probability parameter), \eqn{\sigma} (curvature of value function) and \eqn{\lambda} (loss aversion parameter) respectively as in three columns. The number of rows is the number of subjects in the survey. 
   \item "StanEstimates_Risk_theta_\{\code{project_name}\}_Est\{\code{type_theta}\}\{\code{num_question_Est}\}questions.csv" contains estimates of either global or individual scaling response error parameter \eqn{\theta}.
 }
 }
