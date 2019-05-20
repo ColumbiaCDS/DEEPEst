@@ -1,8 +1,8 @@
 #' Prepare Data for Stan Time Estimation
-#' @description Create an R list object containing all necessary data to run estimation for DEEP Time.
+#' @description After reading, processing and denoising necessary data. This function will create an R list object containing all data to run estimation for DEEP Time.
 #' Called by function \code{\link{Stan_Time_Estimation}}.
 #' @param all_Stan_data Data needed to be processed.
-#' @param num_question_Est How many questions used in the estimation.
+#' @param num_question_Est How many questions are going to be used in this estimation.
 #' @param subjectNumber Number of subjects in this survey.
 #'
 #' @import dplyr
@@ -10,9 +10,12 @@
 #' 
 #' @return Several objects will be returned into global enviornment:
 #' \itemize{
-#'   \item ss_amnt, 
-#'   \item 
-#'   \item moddat, a list object containing all data needed in estimation model.
+#'   \item ss_amnt: a dataframe contains amounts of rewards in all smaller-sooner options.
+#'   \item ll_amnt: a dataframe contains amounts of rewards in all larger-later options.
+#'   \item ss_delay: a dataframe contains delayed days of rewards in all smaller-sooner options.
+#'   \item ll_delay: a dataframe contains delayed days of rewards in all larger-later options.
+#'   \item choices: a dataframe contains all choices made by subjects with "0" means smaller-sooner option is chosen and "1" means larger-later option is chosen.
+#'   \item moddat: a list object contains all these data needed in estimation model.
 #' }
 #' 
 #' @export
@@ -46,15 +49,12 @@ Time_prepare_Stan <- function(all_Stan_data,
   choices <- all_Stan_data %>%
     select(SubjectID, QuestionNum, Choice)  %>%
     acast(SubjectID ~ QuestionNum, value.var = "Choice")
-  
-  choices_made <- choices + 1
-  
+    
   assign("ss_amnt", ss_amnt, envir = .GlobalEnv)
   assign("ll_amnt", ll_amnt, envir = .GlobalEnv)
   assign("ss_delay", ss_delay, envir = .GlobalEnv)
   assign("ll_delay", ll_delay, envir = .GlobalEnv)
   assign("choices", choices, envir = .GlobalEnv)
-  assign("choices_made", choices_made, envir = .GlobalEnv)
   
   moddat <- list("npart" = subjectNumber, 
                  "nchoice" = num_question_Est,

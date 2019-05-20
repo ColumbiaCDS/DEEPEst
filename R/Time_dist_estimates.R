@@ -10,17 +10,17 @@
 #' @importFrom gridExtra grid.arrange
 #' @importFrom rstan extract
 #' 
-#' @return Return the distribution plot for all parameter estimates for all subjects. 
+#' @return Return the distribution plot for all time parameter estimates for all subjects. 
 #' @export
 #'
 #' @examples
 #' Time_dist_estimates(project_name = 'test', num_question_Est = 12, type_theta = 'Hier', path = '/Users/ap/Desktop')
 Time_dist_estimates <- function(project_name, 
-                           num_question_Est,
-                           type_theta, 
-                           path){
+                                num_question_Est,
+                                type_theta, 
+                                path){
   
-  # Make sure the type of delta used is correct
+  # Make sure the type of response noise parameter theta specified is correct
   stopifnot(type_theta %in% c('Global', 'Individual', 'Hier'))
   
   load(paste0(path, '/Stan_Time_', project_name, '_Est', type_theta, num_question_Est, 

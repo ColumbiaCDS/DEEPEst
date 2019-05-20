@@ -1,8 +1,8 @@
 #' Prepare Data for Stan Risk Estimation
-#' @description Create an R list object containing all necessary data to run estimation for DEEP Risk.
+#' @description After reading, processing and denoising necessary data. This function will create an R list object containing all data to run estimation for DEEP Risk.
 #' Called by function \code{\link{Stan_Risk_Estimation}}.
 #' @param all_Stan_data Data needed to be processed.
-#' @param num_question_Est How many questions used in the estimation.
+#' @param num_question_Est How many questions are going to be used in this estimation.
 #' @param subjectNumber Number of subjects in this survey.
 #'
 #' @import dplyr
@@ -10,9 +10,15 @@
 #' 
 #' @return Several objects will be returned into global enviornment:
 #' \itemize{
-#'   \item ss_amnt, 
-#'   \item 
-#'   \item moddat, a list object containing all data needed in estimation model.
+#'   \item x1, 
+#'   \item p1,
+#'   \item y1, 
+#'   \item q1,
+#'   \item x2, 
+#'   \item p2,
+#'   \item y2, 
+#'   \item q2,
+#'   \item moddat, a list object contains all data needed in estimation model.
 #' }
 #' 
 #' @export
@@ -54,9 +60,7 @@ Risk_prepare_Stan <- function(all_Stan_data, num_question_Est, subjectNumber)
   choices <- all_Stan_data %>%
     select(SubjectID, QuestionNum, Choice)  %>%
     acast(SubjectID ~ QuestionNum, value.var = "Choice")
-  
-  #choices_made <- choices + 1
-  
+    
   assign("x1", x1, envir = .GlobalEnv)
   assign("p1", p1, envir = .GlobalEnv)
   assign("y1", y1, envir = .GlobalEnv)

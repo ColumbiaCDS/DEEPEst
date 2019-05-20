@@ -10,7 +10,7 @@
 #' @importFrom gridExtra grid.arrange
 #' @importFrom rstan extract
 #' 
-#' @return Return the distribution plot for all parameter estimates for all subjects. 
+#' @return Return the distribution plot for all risk parameter estimates for all subjects. 
 #' @export
 #'
 #' @examples
@@ -20,7 +20,7 @@ Risk_dist_estimates <- function(project_name,
                                 type_theta,
                                 path){
   
-  # Make sure the type of delta used is correct
+  # Make sure the type of response noise parameter theta specified is correct
   stopifnot(type_theta %in% c('Global', 'Individual', 'Hier'))
   
   load(paste0(path, '/Stan_Risk_', project_name, '_Est', type_theta, num_question_Est, 
