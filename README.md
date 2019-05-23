@@ -8,7 +8,7 @@ This R package provides functions to execute hierarchical Bayesian estimation fo
 
 In trying to understand choices, people would like to know the decision maker's underlying preferences. DEEP (Toubia et al, 2013) is a novel methodology to elicit individuals' risk (DEEP Risk) or time (DEEP Time) preferences by dynamically (i.e., adaptively) optimizing the sequences of questions presented to each subject, while leveraging information about the distribution of the parameters across individuals (heterogeneity) and modeling response error explicitly.
 
-To customize and launch your own DEEP survey, refer to our [survey page](http://). When survey is completed by enough subjects, install the **DEEPEst** package and start estimation.
+**To customize and launch your own DEEP survey, refer to our** [survey page](http://). When survey is completed by enough subjects, install the **DEEPEst** package and start estimation.
 
 ### Installation
 
@@ -25,7 +25,7 @@ If installation fails, please email cds@decisionsciences.columbia.edu.
 
 Download the original survey data csv file into your working directory `path`. And for illustration, let's say the working directory `path` here is "./DEEP Your_Name". 
 
-Then, rename this original csv file to be "DEEP_{model}_surveydata_{project_name}.csv". Here, "{model}" should be either "Time" or "Risk" depending on your project and "{project_name}" should be a unique name indentifying this project. For example, you may name it as "DEEP_Time_surveydata_StudyNo1.csv".
+Then, rename this original csv file to be "DEEP_{model}\_surveydata\_{project_name}.csv". Here, "{model}" should be either "Time" or "Risk" depending on your project and "{project_name}" should be a unique name indentifying this project. For example, you may name it as "DEEP_Time_surveydata_StudyNo1.csv".
 
 Then execute the following:
 
@@ -95,7 +95,7 @@ The main functions to do estimation on DEEP Time and Risk data. This function wi
 
 </details>
 
-<details><summary>**Time_data_prepare, Risk_data_prepare**</summary>
+<details><summary>Time_data_prepare, Risk_data_prepare</summary>
 
 ```r
 Time_data_prepare(project_name,
@@ -129,7 +129,7 @@ Read and denoise the original suvery output data. Only complete rows would be re
 
 </details>
 
-<details><summary>**Time_prepare_Stan, Risk_prepare_Stan**</summary>
+<details><summary>Time_prepare_Stan, Risk_prepare_Stan</summary>
 
 ```r
 Time_prepare_Stan(all_Stan_data,
@@ -153,7 +153,7 @@ After reading, processing and denoising necessary data. These functions will cre
 
 </details>
 
-<details><summary>**Time_index_Questions**</summary>
+<details><summary>Time_index_Questions</summary>
 
 ```r
 Time_index_Questions <- function(stan_data,
@@ -173,7 +173,7 @@ Index and arrange questions so that smaller-sooner and larger-later options woul
 
 </details>
 
-<details><summary>**Risk_resetxy**</summary>
+<details><summary>Risk_resetxy</summary>
 
 ```r
 Risk_resetxy(g1g2)
@@ -194,7 +194,7 @@ Prepare data and make sure the values of rewards `x` and `y` fall into the two s
 **Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.**
 Please click the arrows below for relevant functions:
 
-<details><summary>**Time_save_stantocsv, Risk_save_stantocsv**</summary>
+<details><summary>Time_save_stantocsv, Risk_save_stantocsv</summary>
 
 ```r
 Time_save_stantocsv(project_name,
@@ -222,7 +222,7 @@ This function will save posterior point estimates for preferences from stanfit o
 
 </details>
 
-<details><summary>**Time_dist_estimates, Risk_dist_estimates**</summary>
+<details><summary>Time_dist_estimates, Risk_dist_estimates</summary>
 
 ```r
 Time_dist_estimates(project_name,
@@ -250,7 +250,7 @@ This function will plot the distributions of all parameter estimates across all 
 
 </details>
 
-<details><summary>**Time_plot_cor, Risk_plot_cor**</summary>
+<details><summary>Time_plot_cor, Risk_plot_cor</summary>
 
 ```r
 Time_plot_cor(project_name,
