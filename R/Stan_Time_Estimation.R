@@ -18,6 +18,8 @@
 #' @export
 #'
 #' @importFrom rstan sampling
+#' @importFrom rstan rstan_options
+#' @importFrom rstan options
 #' @examples
 #' Stan_Time_Estimation(project_name = 'Test', num_question_Est = 12, num_question = 12, 
 #' type_theta = 'Hier', path = '/Users/ap/Desktop')
@@ -40,6 +42,9 @@ Stan_Time_Estimation <- function(project_name,
                                  adapt_delta=.9, 
                                  max_treedepth=12, 
                                  stepsize=1) {
+  
+  rstan_options(auto_write = TRUE)
+  options(mc.cores = parallel::detectCores()-1)
   
   # Make sure the type of delta used is correct
   stopifnot(type_theta %in% c('Global', 'Individual', 'Hier'))
