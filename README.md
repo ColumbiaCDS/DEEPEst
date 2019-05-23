@@ -95,17 +95,117 @@ The main functions to do estimation on DEEP Time and Risk data. This function wi
 
 </details>
 
-### Posterior Analysis
-
-*Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.*
-Please click the arrows below for relevant functions:
-
-<details><summary>Time_save_stantocsv, Risk_save_stantocsv</summary>
+<details><summary>**Time_data_prepare, Risk_data_prepare**</summary>
 
 ```r
-Time_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
+Time_data_prepare(project_name,
+	path, 
+	num_question,
+	clean_time = T, 
+	clean_side = T, 
+	each_seconds = 3)
 
-Risk_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
+Risk_data_prepare(project_name,
+	path, 
+	num_question,
+	clean_time = T, 
+	clean_side = T, 
+	each_seconds = 3)
+```
+
+#### Description
+
+Read and denoise the original suvery output data. Only complete rows would be reserved. In addition, this function automatically drops those "unengaged" responses (noisy ones with only random choices, not involving utility consideration). Three csv files will be saved under directory indicated by `path` and used in estimation functions. Examples:
+<img src="images/time_data_prepare.png" width = 500 alt="Estimates CSV"/>
+
+#### Arguments
+
+* project_name: The name of this study. 
+* path: Full path for working directory.
+* num_question: How many questions are asked for each subject in this suvery.
+* each_seconds: How many seconds spent on each question on average so that the observation would be considered as a reasonable response.
+* clean_time: Logical value. Default is `TRUE` means you want to denoise the original data by dropping all responses which are completed within `num_question` times `each_seconds` seconds.
+* clean_side: Logical value. Default is `TRUE` means you want to denoise the original data by dropping all responses which only contain one-side options, namely, only left or right options chosen.
+
+</details>
+
+<details><summary>**Time_prepare_Stan, Risk_prepare_Stan**</summary>
+
+```r
+Time_prepare_Stan(all_Stan_data,
+	num_question_Est,
+	subjectNumber)
+
+Risk_prepare_Stan(all_Stan_data,
+	num_question_Est,
+	subjectNumber)
+```
+
+#### Description
+
+After reading, processing and denoising necessary data. These functions will create an R list object containing all data to run estimation. Called by functions `Stan_Time_Estimation` and `Stan_Risk_Estimation`.
+
+#### Arguments
+
+* all_Stan_data: Data needed to be processed.
+* num_question_Est: How many questions are going to be used in this estimation.
+* subjectNumber: Number of subjects in this survey.
+
+</details>
+
+<details><summary>**Time_index_Questions**</summary>
+
+```r
+Time_index_Questions <- function(stan_data,
+	subjectNumber,
+	num_question)
+```
+
+#### Description
+
+Index and arrange questions so that smaller-sooner and larger-later options would be arranged as expected. Called by function `Stan_Time_Estimation`.
+
+#### Arguments
+
+* stan_data: Data needed to be processed.
+* subjectNumber: Number of subjects in this survey.
+* num_question: How many questions are asked for each subject in this survey.
+
+</details>
+
+<details><summary>**Risk_resetxy**</summary>
+
+```r
+Risk_resetxy(g1g2)
+```
+
+#### Description
+
+Prepare data and make sure the values of rewards `x` and `y` fall into the two situations of CPT model indicated in original paper: either `x>y>0|x<y<0`, or `x<0<y`. Called by function `Stan_Risk_Estimation`.
+
+#### Arguments
+
+* g1g2: One row with contents for two options in one Risk question. 
+
+</details>
+
+### Posterior Analysis
+
+**Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.**
+Please click the arrows below for relevant functions:
+
+<details><summary>**Time_save_stantocsv, Risk_save_stantocsv**</summary>
+
+```r
+Time_save_stantocsv(project_name,
+	num_question_Est,
+	type_theta,
+	path)
+
+Risk_save_stantocsv(project_name,
+	num_question_Est,
+	type_theta,
+	path)
 ```
 
 #### Description
@@ -122,17 +222,23 @@ This function will save posterior point estimates for preferences from stanfit o
 
 </details>
 
-<details><summary>Time_dist_estimates, Risk_dist_estimates</summary>
+<details><summary>**Time_dist_estimates, Risk_dist_estimates**</summary>
 
 ```r
-Time_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
+Time_dist_estimates(project_name,
+	num_question_Est,
+	type_theta,
+	path)
 
-Risk_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
+Risk_dist_estimates(project_name
+	num_question_Est,
+	type_theta,
+	path)
 ```
 
 #### Description
 
-This function will plot the distributions of all parameter estimates across all subjects. Examples:
+This function will plot the distributions of all parameter estimates across all subjects. Example:
 <img src="images/time_dist_estimates.png" height = 500 width = 500 alt="Time Estimates Distribution"/>
 
 #### Arguments
@@ -144,17 +250,27 @@ This function will plot the distributions of all parameter estimates across all 
 
 </details>
 
-<details><summary>Time_plot_cor, Risk_plot_cor</summary>
+<details><summary>**Time_plot_cor, Risk_plot_cor**</summary>
 
 ```r
-Time_plot_cor(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path, parameter1 = 'beta', parameter2 = 'r')
+Time_plot_cor(project_name,
+	num_question_Est,
+	type_theta,
+	path,
+	parameter1,
+	parameter2)
 
-Risk_plot_cor(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path, parameter1 = 'alpha', parameter2 = 'sigma')
+Risk_plot_cor(project_name,
+	num_question_Est,
+	type_theta,
+	path,
+	parameter1,
+	parameter2)
 ```
 
 #### Description
 
-For each subject, the function firstly computes the correlation coefficient between posterior sampling drawers of two parameters set by `parameter1` and `parameter2`. Then it draws the distribution of all correlation coefficients across all subjects. Examples:
+For each subject, the function firstly computes the correlation coefficient between posterior sampling drawers of two parameters set by `parameter1` and `parameter2`. Then it draws the distribution of all correlation coefficients across all subjects. Example:
 <img src="images/time_plot_cor.png" height = 500 width = 500 alt="Time Cor Distribution"/>
 
 #### Arguments
