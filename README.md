@@ -43,12 +43,64 @@ Stan_Risk_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_quest
 
 For details about how to set these arguments and other functions involved, please click the arrows here for relevant functions:
 
+<details><summary>Stan_Time_Estimation, Stan_Risk_Estimation</summary>
+
+```r
+Stan_Time_Estimation(project_name,
+	num_question_Est,
+	num_question,
+	type_theta,
+	path,
+	save_out = T,
+	chains=3,
+	iter=1000,
+	thin=3,
+	adapt_delta=.9,
+	max_treedepth=12,
+	stepsize=1)
+
+Stan_Risk_Estimation(project_name,
+	num_question_Est,
+	num_question,
+	type_theta,
+	path,
+	save_out = T,
+	chains=3,
+	iter=1000,
+	thin=3,
+	adapt_delta=.9,
+	max_treedepth=12,
+	stepsize=1)
+```
+
+#### Description
+
+The main functions to do estimation on DEEP Time and Risk data. This function will automatically call stan models. It will return a large stanfit object called "hier_time" if `save_out=FALSE`. Otherwise, return nothing but save the stanfit object into a local RData file as this example:
+<img src="images/stan_time_estimation.png" width = 500 alt="Stan Time Estimation"/>
+
+#### Arguments
+
+* project_name: The name of this study. 
+* num_question_Est: How many questions you want to use in estimation.
+* num_question: How many questions are asked for each subject.
+* type_theta: Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+* path: Full path for working directory.
+* save_out: Whether save the stanfit object as a rdata file. The default is "TRUE".
+* chains: A positive integer specifying the number of Markov chains. The default is 3.
+* iter: A positive integer specifying the number of iterations for each chain (including warmup). The default is 1000.
+* thin: A positive integer specifying the period for saving samples. The default is 3.
+* adapt_delta: A double value between 0 and 1 controlling the accept probability in sampling. The default is 0.9.
+* max_treedepth: A positive integer specifying how deep in tree exploration. The default is 12.
+* stepsize: A double and positive value controlling sampler's behavior. The default is 1.
+
+</details>
 
 ### Posterior Analysis
 
 *Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.*
 Please click the arrows below for relevant functions:
-<details><summary>*Time_save_stantocsv, Risk_save_stantocsv*</summary>
+
+<details><summary>Time_save_stantocsv, Risk_save_stantocsv</summary>
 
 ```r
 Time_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
@@ -63,14 +115,14 @@ This function will save posterior point estimates for preferences from stanfit o
 
 #### Arguments
 
-* project_name The name of this study. 
-* num_question_Est How many questions you want to use in estimation.
-* type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
-* path Full path for working directory.
+* project_name: The name of this study. 
+* num_question_Est: How many questions you want to use in estimation.
+* type_theta: Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+* path: Full path for working directory.
 
 </details>
 
-<details><summary>*Time_dist_estimates, Risk_dist_estimates*</summary>
+<details><summary>Time_dist_estimates, Risk_dist_estimates</summary>
 
 ```r
 Time_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
@@ -85,10 +137,34 @@ This function will plot the distributions of all parameter estimates across all 
 
 #### Arguments
 
-* project_name The name of this study.
-* num_question_Est How many questions used in the estimation.
-* type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
-* path Full path for working directory.
+* project_name: The name of this study.
+* num_question_Est: How many questions used in the estimation.
+* type_theta: Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+* path: Full path for working directory.
+
+</details>
+
+<details><summary>Time_plot_cor, Risk_plot_cor</summary>
+
+```r
+Time_plot_cor(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path, parameter1 = 'beta', parameter2 = 'r')
+
+Risk_plot_cor(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path, parameter1 = 'alpha', parameter2 = 'sigma')
+```
+
+#### Description
+
+For each subject, the function firstly computes the correlation coefficient between posterior sampling drawers of two parameters set by `parameter1` and `parameter2`. Then it draws the distribution of all correlation coefficients across all subjects. Examples:
+<img src="images/time_plot_cor.png" height = 500 width = 500 alt="Time Cor Distribution"/>
+
+#### Arguments
+
+* project_name: The name of this study.
+* num_question_Est: How many questions used in the estimation.
+* type_theta: Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+* path: Full path for working directory.
+* parameter1 First parameter. Specify either "alpha", "sigma" or "lambda".
+* parameter2 Second parameter. Specify another parameter in "alpha", "sigma" or "lambda".
 
 </details>
 
