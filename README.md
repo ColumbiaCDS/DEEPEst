@@ -46,9 +46,9 @@ For details about how to set these arguments and other functions involved, pleas
 
 ### Posterior Analysis
 
-Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.
+*Functions for posterior analysis would only work when stanfit object for this study `project_name` is saved under directory directory `path` after estimation.*
 Please click the arrows below for relevant functions:
-<details><summary>Time_save_stantocsv, Risk_save_stantocsv</summary>
+<details><summary>*Time_save_stantocsv, Risk_save_stantocsv*</summary>
 
 ```r
 Time_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
@@ -59,7 +59,7 @@ Risk_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta
 #### Description
 
 This function will save posterior point estimates for preferences from stanfit object to local csv files. Examples:
-<img src="images/save_stantocsv.png" alt="Estimates CSV"/>
+<img src="images/save_stantocsv.png" width = 500 alt="Estimates CSV"/>
 
 #### Arguments
 
@@ -70,7 +70,7 @@ This function will save posterior point estimates for preferences from stanfit o
 
 </details>
 
-<details><summary>Time_dist_estimates, Risk_dist_estimates</summary>
+<details><summary>*Time_dist_estimates, Risk_dist_estimates*</summary>
 
 ```r
 Time_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
@@ -81,8 +81,7 @@ Risk_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta
 #### Description
 
 This function will plot the distributions of all parameter estimates across all subjects. Examples:
-<img src="images/time_dist_estimates.png" alt="Time Estimates Distribution"/>
-<img src="images/risk_dist_estimates.png" alt="Risk Estimates Distribution"/>
+<img src="images/time_dist_estimates.png" height = 500 width = 500 alt="Time Estimates Distribution"/>
 
 #### Arguments
 
