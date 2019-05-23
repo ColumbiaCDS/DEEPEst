@@ -33,22 +33,16 @@ Then execute the following:
 # For DEEP Time
 library(DEEPEst)
 Time_data_prepare(project_name = "StudyNo1", path = path, num_question = 12)
-Stan_Time_Estimation(project_name = "StudyNo1", num_question_Est = 12, 
-					 num_question = 12, type_theta = "Hier", path = )
-```
+Stan_Time_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = )
 
-```r
 # For DEEP Risk
 library(DEEPEst)
 Risk_data_prepare(project_name = "StudyNo1", path = path, num_question = 12)
-Stan_Risk_Estimation(project_name = "StudyNo1", num_question_Est = 12, 
-					 num_question = 12, type_theta = "Hier", path = )
+Stan_Risk_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = )
 ```
 
-For details about how to set these arguments and other functions involved, please click the 
+For details about how to set these arguments and other functions involved, please click the arrows here for relevant functions:
 
-
-<details><summary>Run Estimation</summary>
 
 ### Posterior Analysis
 
@@ -62,14 +56,17 @@ Time_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta
 Risk_save_stantocsv(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
 ```
 
-Arguments
+#### Description
+
+This function will save posterior point estimates for preferences from stanfit object to local csv files. Examples:
+<img src="images/save_stantocsv.png" alt="Estimates CSV"/>
+
+#### Arguments
 
 * project_name The name of this study. 
 * num_question_Est How many questions you want to use in estimation.
 * type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
 * path Full path for working directory.
-
-This function will save posterior point estimates for preferences from stanfit object to local csv files.
 
 </details>
 
@@ -81,14 +78,18 @@ Time_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta
 Risk_dist_estimates(project_name = "StudyNo1", num_question_Est = 12, type_theta = 'Hier', path = path)
 ```
 
-Arguments
+#### Description
+
+This function will plot the distributions of all parameter estimates across all subjects. Examples:
+<img src="images/time_dist_estimates.png" alt="Time Estimates Distribution"/>
+<img src="images/risk_dist_estimates.png" alt="Risk Estimates Distribution"/>
+
+#### Arguments
 
 * project_name The name of this study.
 * num_question_Est How many questions used in the estimation.
 * type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
 * path Full path for working directory.
-
-This function will plot the distributions of all parameter estimates across all subjects.
 
 </details>
 
