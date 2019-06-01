@@ -15,6 +15,7 @@
 #' @import Rcpp
 #' @import dplyr
 #' @import ggplot2
+#' @import rstantools
 #' @importFrom reshape2 acast
 #' @importFrom gridExtra grid.arrange
 #' @importFrom rstan sampling

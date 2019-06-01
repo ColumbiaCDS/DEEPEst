@@ -27,7 +27,7 @@
 #' @examples
 #' Risk_prepare_Stan(all_Stan_data = all_Stan_data, num_question_Est = 12, subjectNumber = 200)
 
-Risk_prepare_Stan <- function(all_Stan_data, num_question_Est, subjectNumber)
+Risk_prepare_Stan <- function(all_Stan_data, subjectNumber, num_question_Est)
 {
   all_Stan_data <- all_Stan_data %>% filter(QuestionNum <= num_question_Est)
   

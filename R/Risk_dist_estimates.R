@@ -37,10 +37,10 @@ Risk_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = alphas), bins = 30) +
     labs(x = 'Individual alphas') +
     geom_vline(xintercept = mean(alphas), color = 'red') +
-    annotate("text", x = mean(alphas), y = 40, 
+    annotate("text", x = mean(alphas), y = 0, 
              label = paste0("Mean: ", round(mean(alphas),4)), col="red") +
     geom_vline(xintercept = median(alphas), color = 'green') +
-    annotate("text", x = median(alphas), y = 60, 
+    annotate("text", x = median(alphas), y = 5, 
              label = paste0("Median: ", round(median(alphas),4)), col="green") +
     labs(title = subtitle) + 
     xlim(c(mean(alphas) - 2*sd(alphas), mean(alphas) + 2*sd(alphas)))
@@ -49,10 +49,10 @@ Risk_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = sigmas), bins = 40) +
     labs(x = 'Individual sigmas') +
     geom_vline(xintercept = mean(sigmas), color = 'red') +
-    annotate("text", x = mean(sigmas), y = 40, 
+    annotate("text", x = mean(sigmas), y = 0, 
              label = paste0("Mean: ", round(mean(sigmas),4)), col="red") +
     geom_vline(xintercept = median(sigmas), color = 'green') +
-    annotate("text", x = median(sigmas), y = 60, 
+    annotate("text", x = median(sigmas), y = 5, 
              label = paste0("Median: ", round(median(sigmas),4)), col="green") +
     labs(title = subtitle) +
     xlim(c(mean(sigmas) - 2*sd(sigmas), mean(sigmas) + 2*sd(sigmas)))
@@ -61,10 +61,10 @@ Risk_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = lambdas), bins = 30) +
     labs(x = 'Individual lambdas') +
     geom_vline(xintercept = mean(lambdas), color = 'red') +
-    annotate("text", x = mean(lambdas), y = 40, 
+    annotate("text", x = mean(lambdas), y = 0, 
              label = paste0("Mean: ", round(mean(lambdas),4)), col="red") +
     geom_vline(xintercept = median(lambdas), color = 'green') +
-    annotate("text", x = median(lambdas), y = 60, 
+    annotate("text", x = median(lambdas), y = 5, 
              label = paste0("Median: ", round(median(lambdas),4)), col="green") +
     labs(title = subtitle) +
     xlim(c(mean(lambdas) - 2*sd(lambdas), mean(lambdas) + 2*sd(lambdas)))

@@ -63,7 +63,7 @@ Stan_Time_Estimation <- function(project_name,
   all_Stan_data <- Time_index_Questions(all_Stan_data, subjectNumber, num_question)
   
   # create data list for running Stan
-  Time_prepare_Stan(all_Stan_data, num_question_Est, subjectNumber)
+  Time_prepare_Stan(all_Stan_data, subjectNumber, num_question_Est)
   
   # Set initial values to begin MCMC sampling based on empirical knowledge
   chain <- list('beta' = rep(0.8, subjectNumber), 'r' = rep(0.002, subjectNumber),

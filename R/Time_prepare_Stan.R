@@ -2,8 +2,8 @@
 #' @description After reading, processing and denoising necessary data. This function will create an R list object containing all data to run estimation for DEEP Time.
 #' Called by function \code{\link{Stan_Time_Estimation}}.
 #' @param all_Stan_data Data needed to be processed.
-#' @param num_question_Est How many questions are going to be used in this estimation.
 #' @param subjectNumber Number of subjects in this survey.
+#' @param num_question_Est How many questions are going to be used in this estimation.
 #'
 #' @import dplyr
 #' @importFrom reshape2 acast
@@ -23,8 +23,8 @@
 #' @examples
 #' Time_prepare_Stan(all_Stan_data = all_Stan_data, num_question_Est = 12, subjectNumber = 200)
 Time_prepare_Stan <- function(all_Stan_data, 
-                        num_question_Est, 
-                        subjectNumber){
+                              subjectNumber,
+                              num_question_Est){
 
   all_Stan_data <- all_Stan_data %>% filter(QuestionNum <= num_question_Est)
   

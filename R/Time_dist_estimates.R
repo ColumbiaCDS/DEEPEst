@@ -37,10 +37,10 @@ Time_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = betas), bins = 30) +
     labs(x = 'Individual betas') +
     geom_vline(xintercept = mean(betas), color = 'red') +
-    annotate("text", x = mean(betas), y = 40, 
+    annotate("text", x = mean(betas), y = 0, 
              label = paste0("Mean: ", round(mean(betas),4)), col="red") +
     geom_vline(xintercept = median(betas), color = 'green') +
-    annotate("text", x = median(betas), y = 60, 
+    annotate("text", x = median(betas), y = 5, 
              label = paste0("Median: ", round(median(betas),4)), col="green") +
     labs(title = subtitle) + 
     xlim(c(mean(betas) - 2*sd(betas), mean(betas) + 2*sd(betas)))
@@ -49,10 +49,10 @@ Time_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = rs), bins = 40) +
     labs(x = 'Individual rs') +
     geom_vline(xintercept = mean(rs), color = 'red') +
-    annotate("text", x = mean(rs), y = 40, 
+    annotate("text", x = mean(rs), y = 0, 
              label = paste0("Mean: ", round(mean(rs),4)), col="red") +
     geom_vline(xintercept = median(rs), color = 'green') +
-    annotate("text", x = median(rs), y = 60, 
+    annotate("text", x = median(rs), y = 5, 
              label = paste0("Median: ", round(median(rs),4)), col="green") +
     labs(title = subtitle) +
     xlim(c(mean(rs) - 2*sd(rs), mean(rs) + 2*sd(rs)))
@@ -61,10 +61,10 @@ Time_dist_estimates <- function(project_name,
     geom_histogram(mapping = aes(x = deltas), bins = 30) +
     labs(x = 'Individual deltas') +
     geom_vline(xintercept = mean(deltas), color = 'red') +
-    annotate("text", x = mean(deltas), y = 40, 
+    annotate("text", x = mean(deltas), y = 0, 
              label = paste0("Mean: ", round(mean(deltas),4)), col="red") +
     geom_vline(xintercept = median(deltas), color = 'green') +
-    annotate("text", x = median(deltas), y = 60, 
+    annotate("text", x = median(deltas), y = 5, 
              label = paste0("Median: ", round(median(deltas),4)), col="green") +
     labs(title = subtitle) +
     xlim(c(mean(deltas) - 2*sd(deltas), mean(deltas) + 2*sd(deltas)))

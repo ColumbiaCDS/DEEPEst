@@ -4,7 +4,7 @@
 
 In trying to understand choices, people would like to know the decision maker's underlying preferences. DEEP (Toubia et al, 2013) is a novel methodology to elicit individuals' risk (DEEP Risk) or time (DEEP Time) preferences by dynamically (i.e., adaptively) optimizing the sequences of questions presented to each subject, while leveraging information about the distribution of the parameters across individuals (heterogeneity) and modeling response error explicitly.
 
-**To customize and launch your own DEEP survey, refer to our** [survey page](http://). When survey is completed by enough subjects, install the **DEEPEst** package and start estimation.
+**To launch your own DEEP survey, refer to our** [survey page](http://). When survey is completed by enough subjects, install the **DEEPEst** package and start estimation.
 
 # DEEPEst
 
@@ -33,12 +33,12 @@ Then execute the following:
 # For DEEP Time
 library(DEEPEst)
 Time_data_prepare(project_name = "StudyNo1", path = path, num_question = 12)
-Stan_Time_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = )
+Stan_Time_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = path)
 
 # For DEEP Risk
 library(DEEPEst)
 Risk_data_prepare(project_name = "StudyNo1", path = path, num_question = 12)
-Stan_Risk_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = )
+Stan_Risk_Estimation(project_name = "StudyNo1", num_question_Est = 12, num_question = 12, type_theta = "Hier", path = path)
 ```
 
 For details about how to set these arguments and other functions involved, please click the arrows here for relevant functions:
@@ -156,7 +156,7 @@ After reading, processing and denoising necessary data. These functions will cre
 <details><summary>Time_index_Questions</summary>
 
 ```r
-Time_index_Questions <- function(stan_data,
+Time_index_Questions(stan_data,
 	subjectNumber,
 	num_question)
 ```

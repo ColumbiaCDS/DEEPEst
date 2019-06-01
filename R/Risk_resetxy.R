@@ -3,7 +3,7 @@
 #' Called by function \code{\link{Stan_Risk_Estimation}}.
 #' @param g1g2 One row with contents for two options in one Risk question. 
 #'
-#' @return Arranged data.
+#' @return Arranged properly row.
 #' @export
 #'
 #' @examples
