@@ -1,4 +1,4 @@
-#' Read, Clean and Denoise Time Survey Data
+#' Read, Clean and Denoise Risk Survey Data
 #' @description Read and denoise the original suvery output data. Only complete rows would be reserved. In addition, this function automatically drops those "unengaged" responses (noisy ones with only random choices, not involving utility consideration).
 #' Once you obtain the original output csv file from DEEP survey under directory \code{path}, rename it to be "DEEP_\{\code{model}\}_surveydata_\{\code{project_name}\}.csv", where "\code{model}" is either "Time" or "Risk".
 
@@ -11,17 +11,17 @@
 #'
 #' @import dplyr
 #' 
-#' @return Three csv files will be saved under directory indicated by \code{path} and used in estimation function \code{\link{Stan_Time_Estimation}}:
+#' @return Three csv files will be saved under directory indicated by \code{path} and used in estimation function \code{\link{Stan_Risk_Estimation}}:
 #' \itemize{
-#'   \item "\{\code{project_name}\}_Time_options_chosen.csv" contains amounts of rewards (first column) and delayed days (second column) of all chosen options. The number of rows is \code{num_question} times \code{num_subjects}, where \code{num_subjects} is the number of subjects in this survey after denoising.
-#'   \item "\{\code{project_name}\}_Time_options_notchosen.csv" is same as the above one except this contains data of unchosen options among all questions.
-#'   \item "\{\code{project_name}\}_Time_serials.csv" contains serial number for each subject as identification.
+#'   \item "\{\code{project_name}\}_Risk_options_chosen.csv" contains amounts of rewards (first column) and delayed days (second column) of all chosen options. The number of rows is \code{num_question} times \code{num_subjects}, where \code{num_subjects} is the number of subjects in this survey after denoising.
+#'   \item "\{\code{project_name}\}_Risk_options_notchosen.csv" is same as the above one except this contains data of unchosen options among all questions.
+#'   \item "\{\code{project_name}\}_Risk_serials.csv" contains serial number for each subject as identification.
 #' }
 #' @export
 #'
 #' @examples
-#' Time_data_prepare(project_name = 'test', path = '/Users/ap/Desktop', num_question = 12)
-Time_data_prepare <- function(project_name, 
+#' Risk_data_prepare(project_name = 'test', path = '/Users/ap/Desktop', num_question = 12)
+Risk_data_prepare <- function(project_name, 
                               path, 
                               num_question,
                               clean_time = T, 
@@ -29,7 +29,7 @@ Time_data_prepare <- function(project_name,
                               each_seconds = 2
                               ){
   
-  original <- read.csv(paste0(path, '/DEEP_Time_surveydata_', project_name, '.csv'), as.is = T, header = T)
+  original <- read.csv(paste0(path, '/DEEP_Risk_surveydata_', project_name, '.csv'), as.is = T, header = T)
   # Keep only complete rows
   original <- original[complete.cases(original),]
   rownames(original) <- seq(nrow(original))
@@ -56,10 +56,10 @@ Time_data_prepare <- function(project_name,
   
   # Attention, as default gambles1 will contain the actual options made by subjects
   
-  gambles1 <- matrix(c(original$chosendollars, original$chosentime), ncol = 2)
-  gambles2 <- matrix(c(original$nonchosendollars, original$nonchosentime), ncol = 2)
+  gambles1 <- matrix(c(original$chosenamount1, original$chosenprob1, original$chosenamount2, original$chosenprob2), ncol = 4)
+  gambles2 <- matrix(c(original$nonchosenamount1, original$nonchosenprob1, original$nonchosenamount2, original$nonchosenprob2), ncol = 4)
 
-  write.table(x = gambles1, paste0(path, '/', project_name, '_Time_options_chosen.csv'), col.names = F, row.names = F, sep = ',')
-  write.table(x = gambles2, paste0(path, '/', project_name, '_Time_options_notchosen.csv'), col.names = F, row.names = F, sep = ',')
-  write.table(unique(original$serial), paste0(path, '/', project_name, '_Time_serials.csv'), row.names = F, col.names = F, sep = ',')
+  write.table(x = gambles1, paste0(path, '/', project_name, '_Risk_options_chosen.csv'), col.names = F, row.names = F, sep = ',')
+  write.table(x = gambles2, paste0(path, '/', project_name, '_Risk_options_notchosen.csv'), col.names = F, row.names = F, sep = ',')
+  write.table(unique(original$serial), paste0(path, '/', project_name, '_Risk_serials.csv'), row.names = F, col.names = F, sep = ',')
 }
