@@ -27,8 +27,8 @@ transformed parameters {
   r = -log(delta)/365;
   for(p in 1:npart){
     for(i in 1:nchoice){
-      \\vss[p,i] = ss_delay[p, i] == 0 ? ss_amnt[p,i] : ss_amnt[p,i] * beta[p] * exp(-r[p] * ss_delay[p, i]);
-      \\vll[p,i] = ll_amnt[p,i] * beta[p] *exp(-r[p] * ll_delay[p, i]);
+      //vss[p,i] = ss_delay[p, i] == 0 ? ss_amnt[p,i] : ss_amnt[p,i] * beta[p] * exp(-r[p] * ss_delay[p, i]);
+      //vll[p,i] = ll_amnt[p,i] * beta[p] *exp(-r[p] * ll_delay[p, i]);
       
       vss[p,i] = ss_amnt[p,i] * beta[p] * exp(-r[p] * (ss_delay[p, i]+1));
       vll[p,i] = ll_amnt[p,i] * beta[p] *exp(-r[p] * (ll_delay[p, i]+1));
