@@ -3,11 +3,11 @@
 #' @param project_name The name of this study.
 #' @param num_question_Est How many questions you want to use in estimation.
 #' @param num_question How many questions are asked for each subject.
-#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier".
+#' @param type_theta Type of scaling response noise parameter used in estimation, specify either "Global", "Individual" or "Hier". If all of these exhibit bad convergence, try "Stoch" (currently experimental).
 #' @param path Full path for working directory.
 #' @param save_out Whether save the stanfit object as a rdata file. The default is "TRUE".
 #' @param chains A positive integer specifying the number of Markov chains. The default is 3.
-#' @param iter A positive integer specifying the number of iterations for each chain (including warmup). The default is 1000.
+#' @param iter A positive integer specifying the number of iterations for each chain (including warmup).
 #' @param thin A positive integer specifying the period for saving samples. The default is 3. For details, refer to help page for function \code{\link[rstan]{stan}}.
 #' @param adapt_delta A double value between 0 and 1 controlling the accept probability in sampling. The default is 0.9. For details, refer to help page for function \code{\link[rstan]{stan}}.
 #' @param max_treedepth A positive integer specifying how deep in tree exploration. The default is 12. For details, refer to help page for function \code{\link[rstan]{stan}}.
