@@ -47,7 +47,7 @@ Stan_Time_Estimation <- function(project_name,
   options(mc.cores = parallel::detectCores()-1)
 
   # Make sure the type of delta used is correct
-  stopifnot(type_theta %in% c('Global', 'Individual', 'Stoch', 'Hier'))
+  stopifnot(type_theta %in% c('Global', 'Individual', 'Hier')) #removed stoch for now b/c path not working
 
   gambles1 <- read.csv(paste0(path, '/', project_name, '_Time_options_chosen.csv')
                        , header = F, col.names = c("ssamount","ssdelay"))
@@ -86,9 +86,9 @@ Stan_Time_Estimation <- function(project_name,
 
   # run stan model with indiviual or global or hierarchical scaling response noise parameter
   if (type_theta == 'Global') {
-    hier_time <- stan(paste0(path, '/Stan_Time_Global.stan'),
+    hier_time <- sampling(stanmodels$Stan_Time_Global,
                       data = moddat,
-                      chains = 3,
+                      chains = chains,
                       iter = iter,
                       init = initial_chains,
                       thin = thin,
@@ -97,7 +97,7 @@ Stan_Time_Estimation <- function(project_name,
                                      stepsize = stepsize))
   }
   if (type_theta == 'Individual'){
-    hier_time <- stan(paste0(path, '/Stan_Time_Individual.stan'),
+    hier_time <- sampling(stanmodels$Stan_Time_Individual,
                       data = moddat,
                       chains = chains,
                       iter = iter,
@@ -117,6 +117,16 @@ Stan_Time_Estimation <- function(project_name,
                       control = list(adapt_delta = .9,
                                      max_treedepth = max_treedepth,
                                      stepsize = stepsize))
+  } else {
+    hier_time <- sampling(stanmodels$Stan_Time_Hier,
+                          data = moddat,
+                          chains = chains,
+                          iter = iter,
+                          init = initial_chains,
+                          thin = thin,
+                          control = list(adapt_delta = adapt_delta,
+                                         max_treedepth = max_treedepth,
+                                         stepsize = stepsize))
   }
 
 
