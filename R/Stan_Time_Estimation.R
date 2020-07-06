@@ -72,14 +72,14 @@ Stan_Time_Estimation <- function(project_name,
                 'mubeta' = 0.8, 'sigmabeta' = 0.2,
                 'mudelta_phi' = 0, 'sigmadelta_phi' = 0.2,
                 'mutheta' = -1, 'sigmatheta' = 1)
-  if (type_theta == 'Stoch') {
-    chain <- list('beta' = rep(0.8, subjectNumber), 'r' = rep(0.002, subjectNumber),
-                  'delta' = rep(exp(-365*0.002), subjectNumber), 'theta' = rep(0.005, subjectNumber),
-                  'delta_phi' = rep(0, subjectNumber),
-                  'mubeta' = 0.8, 'sigmabeta' = 0.2,
-                  'mudelta_phi' = 0, 'sigmadelta_phi' = 0.2,
-                  'mutheta' = -1, 'sigmatheta' = .01)
-  }
+  #if (type_theta == 'Stoch') {
+  #  chain <- list('beta' = rep(0.8, subjectNumber), 'r' = rep(0.002, subjectNumber),
+  #                'delta' = rep(exp(-365*0.002), subjectNumber), 'theta' = rep(0.005, subjectNumber),
+  #                'delta_phi' = rep(0, subjectNumber),
+  #                'mubeta' = 0.8, 'sigmabeta' = 0.2,
+  #                'mudelta_phi' = 0, 'sigmadelta_phi' = 0.2,
+  #                'mutheta' = -1, 'sigmatheta' = .01)
+  #}
 
 
   initial_chains <- list(chain, chain, chain)
@@ -107,17 +107,17 @@ Stan_Time_Estimation <- function(project_name,
                                      max_treedepth = max_treedepth,
                                      stepsize = stepsize))
   }
-  if (type_theta == 'Stoch'){
-    hier_time <- stan(paste0(path, '/Stan_Time_HierStochas (1).stan'),
-                      data = moddat,
-                      chains = 3,
-                      iter = 5000,
-                      init = initial_chains,
-                      thin = thin,
-                      control = list(adapt_delta = .9,
-                                     max_treedepth = max_treedepth,
-                                     stepsize = stepsize))
-  } else {
+  # if (type_theta == 'Stoch'){
+  #  hier_time <- stan(paste0(path, '/Stan_Time_HierStochas (1).stan'),
+  #                    data = moddat,
+  #                    chains = 3,
+  #                    iter = 5000,
+  #                    init = initial_chains,
+  #                    thin = thin,
+  #                    control = list(adapt_delta = .9,
+  #                                   max_treedepth = max_treedepth,
+  #                                   stepsize = stepsize))
+  else {
     hier_time <- sampling(stanmodels$Stan_Time_Hier,
                           data = moddat,
                           chains = chains,
